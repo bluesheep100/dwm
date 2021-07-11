@@ -4,6 +4,7 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 0;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
@@ -37,8 +38,10 @@ static const unsigned int alphas[][3] = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	/* class       instance  title           tags mask  isfloating  isterminal   noswallow   monitor */
+	{ "Gimp",      NULL,     NULL,           1 << 8,    1,          0,           0,          -1 },
+	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,          -1 },
+	{ NULL,        NULL,     "Event Tester", 0,         0,          0,           1,          -1 },
 };
 
 /* layout(s) */
